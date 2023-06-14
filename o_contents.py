@@ -11,5 +11,5 @@ def get_wikipedia_article():
     pass
 
     
-if __name__ = '__main__':
+if __name__ =='__main__':
     pass
