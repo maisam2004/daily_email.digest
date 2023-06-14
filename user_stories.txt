@@ -1,0 +1,43 @@
+As a <Role> I want <goal>so that <benefit/expected outcome >
+
+The written text must address the “who (role)”, “what (goal)” and “why (benefits)” of the story.
+
+
+user stories _______
+
+ 1) As a digest recipient, I want to read an inspirational quote so that I have something to ponder throughout my day. 
+ 2)As a digest recipient, I'll also want to know the weather forecast so I know how to dress.
+ 3)As a digest recipient, I want to know what's currently trending on Twitter so I can stay hip and relevant to keep up with what's happening in the world.
+ 4) as a digest recipient, I want to learn random facts so I can get a little bit smarter every day.
+
+  as admin ---------
+  1) as admin ,i want to curate the content to include so that i can create the best experience for my digest recipient.
+  2) As an admin, I'll also want to control when the email will be sent. So it arrives with relevant information to prepare recipients for their day ahead.
+3)as an admin,i want to add and remove recipient so that i can control who recieves the daily digest email.
+
+---use cases ------
+
+#
+#requirements that shoftware Must Do !!
+
+For example, 
+1)my daily digest application must generate a random inspirational quote. 
+2)The application must also retrieve current weather forecast information for a specified location, 
+3)retrieve current Twitter trends and retrieve a random Wikipedia article. 
+4)It must format that content into an email and then send that email to a specified list of recipients.
+
+
+functional requirements for admin
+  It should enable the admin to configure which content sources to include in the email digest, 
+  it should enable the admin to add recipients to the distribution list as well as remove recipients. each, here, represents a single capability. 
+  My application will also need to enable the admin to schedule a reoccurring daily time to send the email digest as well as configure the email account credentials for sending the email.
+
+  (Notice that I did not combine add and remove recipients into a single requirement, which might seem natural to do, because add and remove operations typically accompany each other. That said, they are distinctly different operations, which is why I split them apart here. )
+
+@@@
+none functional requirement 
+how should it do it??
+
+1)configurable using admin gui
+2)Extensible to add more content types
+3)resilient to conntent error
