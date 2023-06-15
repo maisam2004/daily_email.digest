@@ -5,7 +5,7 @@ class Daily_digest_gui:
 
     """
         enable admin to :
-        configure which content source to include in email
+        -configure which content source to include in email
         -add recipients
         -remove re
         -schedule daily time 
