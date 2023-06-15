@@ -52,8 +52,11 @@ def get_twitter_trends():#tweepy
         print(e)
 
 def get_wikipedia_article():
-    pass
-
+    try:
+        data = json.load(request.urlopen())
+        return{'title':data['title'],'extract':data['extract'],'url':data['content_urls']['desktop']['page']}
+    except Exception as e:
+        print(e)
     
 if __name__ =='__main__':
 
@@ -100,3 +103,5 @@ if __name__ =='__main__':
     trends = get_twitter_trends(woeid = -1) # invalid WOEID
     if trends is None:
         print('Twitter trends for invalid WOEID returned None')
+
+    ##### test wikipedia () #####
