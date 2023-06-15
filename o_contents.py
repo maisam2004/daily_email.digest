@@ -53,7 +53,7 @@ def get_twitter_trends():#tweepy
 
 def get_wikipedia_article():
     try:
-        data = json.load(request.urlopen())
+        data = json.load(request.urlopen('https://en.wikipedia.org/api/rest_v1/page/random/summary'))
         return{'title':data['title'],'extract':data['extract'],'url':data['content_urls']['desktop']['page']}
     except Exception as e:
         print(e)
@@ -105,3 +105,6 @@ if __name__ =='__main__':
         print('Twitter trends for invalid WOEID returned None')
 
     ##### test wikipedia () #####
+    article = get_wikipedia_article()
+    if article:
+        print(f'\n{article["title"]}\n<{article["url"]}>\n{article["extract"]}')
