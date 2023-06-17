@@ -43,7 +43,7 @@ def get_weather_forecast(coords=None):
     except Exception as e:
         print(e)
 
-def get_twitter_trends():#tweepy
+def get_twitter_trends(woeid=23424977):#tweepy ,default WOEID for United States
     try: # retrieve Twitter trends for specified location
         api_key = 'YOUR TWITTER API KEY GOES HERE' # replace with your own Twitter API key
         api_secret_key = 'YOUR TWITTER API SECRET KEY GOES HERE' # replace with your own Twitter API secret key
@@ -93,20 +93,23 @@ if __name__ =='__main__':
     trends = get_twitter_trends() # get trends for default location of United States
     if trends:
         print('\nTop 10 Twitter trends in the United States are...')
-        for trend in trends[0:10]: # show top ten
+        for trend in trends[:10]: # show top ten
             print(f' - {trend["name"]}: {trend["url"]}')
 
     trends = get_twitter_trends(woeid = 44418) # get trends for London
     if trends:
         print('\nTop 10 Twitter trends in London are...')
-        for trend in trends[0:10]: # show top ten
+        for trend in trends[:10]: # show top ten
             print(f' - {trend["name"]}: {trend["url"]}')
 
     trends = get_twitter_trends(woeid = -1) # invalid WOEID
     if trends is None:
         print('Twitter trends for invalid WOEID returned None')
 
-    ##### test wikipedia () #####
-    article = get_wikipedia_article()
-    if article:
+#####wikipedia ### 
+    if article := get_wikipedia_article():
         print(f'\n{article["title"]}\n<{article["url"]}>\n{article["extract"]}')
+
+    """ article = get_wikipedia_article()
+    if article:
+        print(f'\n{article["title"]}\n<{article["url"]}>\n{article["extract"]}') """
