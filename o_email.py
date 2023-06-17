@@ -147,7 +147,7 @@ class Daily_digest_email:
         return {'text': text, 'html': html}
 
 if __name__ == '__main__':
-    email = DailyDigestEmail()
+    email = Daily_digest_email()
 
     ##### test format_message() #####
     print('\nTesting email body generation...')
@@ -165,11 +165,7 @@ if __name__ == '__main__':
         f.write(message['text'])
     with open('message_html.html', 'w', encoding='utf-8') as f:
         f.write(message['html'])
-    def send_email(self):
-        pass
-    
-    def format_massage(self):
-        pass
-    
-if __name__ == "__main__":
-    pass
+
+    ##### test send_email() #####
+    print('\nSending test email...')
+    email.send_email()
