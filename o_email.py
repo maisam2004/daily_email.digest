@@ -1,6 +1,10 @@
 import o_contents
 import datetime
 
+import smtplib
+from email.message import EamilMesssage
+
+
 class Daily_digest_email:
     def __init__(self):
         self.content = {'quote': {'include': True, 'content': o_contents.get_random_quote()},
