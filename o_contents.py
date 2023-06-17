@@ -21,8 +21,10 @@ def get_random_quote(quotes_file='quotes.csv'):
                     'quote': 'Always Look on the Bright Side of Life.'}]
     return random.choice(quotes)
 
-def get_weather_forecast(coords={'lat': 28.4717, 'lon': -80.5378}):
+def get_weather_forecast(coords=None):
 
+    if coords is None:
+        coords = {'lat': 28.4717, 'lon': -80.5378}
     try: # retrieve forecast for specified coordinates
         api_key = 'YOUR OPENWEATHERMAP API KEY GOES HERE' # replace with your own OpenWeatherMap API key
         url = f'https://api.openweathermap.org/data/2.5/forecast?lat={coords["lat"]}&lon={coords["lon"]}&appid={api_key}&units=metric'
@@ -31,7 +33,7 @@ def get_weather_forecast(coords={'lat': 28.4717, 'lon': -80.5378}):
         forecast = {'city': data['city']['name'], # city name
                     'country': data['city']['country'], # country name
                     'periods': list()} # list to hold forecast data for future periods
-        
+
         for period in data['list'][0:9]: # populate list with next 9 forecast periods 
             forecast['periods'].append({'timestamp': datetime.datetime.fromtimestamp(period['dt']),
                                         'temp': round(period['main']['temp']),
