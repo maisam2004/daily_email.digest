@@ -2,7 +2,7 @@ import o_contents
 import datetime
 
 import smtplib
-from email.message import EamilMesssage
+from email.message import EmailMessage
 
 
 class Daily_digest_email:
@@ -11,13 +11,37 @@ class Daily_digest_email:
                         'weather': {'include': True, 'content': o_contents.get_weather_forecast()},
                         'twitter': {'include': True, 'content': o_contents.get_twitter_trends()},
                         'wikipedia': {'include': True, 'content': o_contents.get_wikipedia_article()}}
+        
+        self.recipients_list = ['digest-recipient1@email.com',
+                                'digest-recipient2@email.com']
+
+        self.sender_credentials = {'email': 'YOUR SENDER EMAIL ADDRESS GOES HERE', # your sender email address
+                                   'password': 'YOUR SENDER EMAIL PASSWORD GOES HERE'} # your sender password
 
     def send_email(self):
-        pass
+        # build email message
+        msg = EmailMessage()
+        msg['Subject'] = f'Daily Digest - {datetime.date.today().strftime("%d %b %Y")}'
+        msg['From'] = self.sender_credentials['email']
+        msg['To'] = ', '.join(self.recipients_list)
+
+        # add Plaintext and HTML content
+        msg_body = self.format_message()
+        msg.set_content(msg_body['text'])
+        msg.add_alternative(msg_body['html'], subtype='html')
+
+        # secure connection with STMP server and send email
+        with smtplib.SMTP('smtp.office365.com', 587) as server:
+            server.starttls()
+            server.login(self.sender_credentials['email'],
+                         self.sender_credentials['password'])
+            server.send_message(msg)
 
     """
     Generate email message body as Plaintext and HTML.
+
     """
+    
     def format_message(self):  #  skip: low-code-quality
         ##############################
         ##### Generate Plaintext #####
